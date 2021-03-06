@@ -6,6 +6,9 @@ from .apirest import router as api_router
 
 
 def create_routes(app: FastAPI):
+    """
+    Includes the routers to FastApi app endpoint
+    """
     app.include_router(test_router)
     app.include_router(
         api_router, 
