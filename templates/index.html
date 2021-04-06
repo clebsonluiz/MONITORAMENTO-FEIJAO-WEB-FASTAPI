@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang='pt-br'>
+<meta charset="utf-8"/>
+<head>
+	<style>
+	.flex, h2{
+		display: flex;justify-content: center;
+	}
+	table, .c {
+		border-radius: 10px;border: 1px solid black;padding: 5px;margin: 10px;text-align: center;background-color: darkgray;
+		max-width: 10cm;
+	}
+	body , .c{
+		background-color: lightgray;font-family: 'Monospace';
+	}
+	.b {
+		padding: 10px;
+		font-size: 14px;
+		text-align: justify;
+	}
+	.d {
+		padding-top: 10px;
+		font-size: 10px;
+		text-align: right;
+	}
+	</style>
+</head>
+<body>
+<h2>Monitoramento</h2>
+<h2>...</h2>
+
+<div class='content'>
+<div class='flex'>
+
+</div>
+</div>
+<div class='content flex'>
+
+</div>
+
+  <script type='text/javascript'>
+
+	const delay = ms => new Promise(res => setTimeout(res, ms));
+
+  	function f(obj){
+		if(!obj){
+			return "";
+		} 
+
+  		let html = "";
+  		html += "<div class='flex'>";
+		html += "<table>";
+	  	html += "<tr><th class='a'colspan='5'>" + obj.nome + "</th></tr>";
+	  	html += "<tr><td class='b'colspan='5'>" + obj.monitorando + "</td></tr>";
+	  	html += "<tr>";
+
+	  	for (let i = 0; i < obj.status.length ; i++) {
+	  		html += "<td class='c'>" + obj.status[i] + "</td>";
+	  	}
+	  	
+	  	html += "</tr>";
+	  	html += "<tr><td class='d'colspan='5'>" + new Date(obj.data_obtencao).toLocaleString() + "</td></tr>";
+		html += "</table>";
+		html += "</div>";
+
+		return html;	
+  	}
+
+  	function onGet(url){
+  		return fetch(url, 
+  		{
+            method: 'GET',
+            headers: {
+  		        'Content-Type': 'application/json'
+            } 
+  		}).then(async (response) => {
+
+			if(response.status == 200){
+				 return response.json();
+			}
+			await delay(10000);
+			document.location.reload(true);			
+		  } 
+  		);
+  	}
+
+  	document.addEventListener('DOMContentLoaded', async function(e) {
+  		
+  		var obj1 = await onGet("/api/sensores/1").catch((reason) => console.log(reason) );
+
+		var obj2 = await onGet("/api/sensores/2").catch((reason) => console.log(reason) );
+
+		var domObj = document.getElementsByClassName('content')[0];
+
+		if(!obj1 && !obj2) {
+			await delay(30000);
+			document.location.reload(true);	
+		}
+		
+		domObj.innerHTML = f(obj1) + f(obj2);
+
+		await delay(150000);
+		document.location.reload(true);	
+
+  	});
+
+  	
+
+  </script>
+  
+  </body>
+
+</html>

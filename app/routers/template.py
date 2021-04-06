@@ -1,16 +1,22 @@
 
 from fastapi import APIRouter
-from typing import Optional
+from fastapi.requests import Request
+from fastapi.templating import Jinja2Templates
+from fastapi.responses import HTMLResponse
+
+
+templates = Jinja2Templates(directory="templates")
+
 
 router = APIRouter()
 
-@router.get("/hello_json")
-def read_json(opitional_param: Optional[str] = None):
+@router.get("/", response_class=HTMLResponse)
+def index_root(request: Request):
     """
-    function to router '/hello_json' on method 'GET'
+    function to main router '/' on method 'GET'
 
-    :param opitional_param: str to test response
-    :return: JSON response
+    
+    :return: HTML response
     """
     _json = {
         "Olá povo do grupo": "</Sertão Dev>",
@@ -26,9 +32,5 @@ def read_json(opitional_param: Optional[str] = None):
         ],
         "Para mais informações": "https://docs.deta.sh"
     }
-    if opitional_param:
-        _temp = _json.copy()
-        _temp["Parametro Opcional foi..."] = opitional_param
-        return _temp
-    return _json
+    return templates.TemplateResponse("index.html", {"request": request})
 

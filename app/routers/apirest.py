@@ -49,7 +49,7 @@ def get_all():
     return next(base.fetch())
 
 
-@router.put("/{key}", status_code=203, )
+@router.put("/{key}", status_code=201, )
 def put(key: str, sensor: Sensor):
     """
     function to router '/{key}' on method 'PUT' 
@@ -64,6 +64,7 @@ def put(key: str, sensor: Sensor):
     _json = base.get(key)
     to_update = Sensor(**(_json if _json != None else {}))
     update_data = sensor.dict(exclude_unset=True)
+    update_data['data_obtencao'] = int(datetime.timestamp(datetime.now()) * 1000)
     updated = to_update.copy(update=update_data)
 
     return base.put(updated.dict(), key)
