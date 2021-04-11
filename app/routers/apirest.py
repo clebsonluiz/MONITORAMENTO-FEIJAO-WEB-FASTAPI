@@ -11,19 +11,6 @@ router = APIRouter()
 __BASE_NAME = DETA_BASE_NAME
 
 
-@router.get("/nome/{nome}")
-def get_one_by_nome(nome: str):
-    """
-    function to router '/nome/{nome}' on method 'GET' 
-    to find a object Sensor by name in Deta Base
-    
-    :param nome: str name of entry
-    :return: a json result
-    """
-    base = DB.connect(__BASE_NAME)
-    find = next(base.fetch({'nome':nome}))
-    return find[0] if len(find) > 0 else {}
-
 
 @router.get("/{key}")
 def get_one(key: str):

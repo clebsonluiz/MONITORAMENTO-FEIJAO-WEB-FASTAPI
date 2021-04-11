@@ -18,19 +18,5 @@ def index_root(request: Request):
     
     :return: HTML response
     """
-    _json = {
-        "Olá povo do grupo": "</Sertão Dev>",
-        "Por": "Clébson Luiz :)",
-        "Infos": [
-            {
-                "Micro Serviço Usado Para Deploy": "Deta Micros",
-                "Acesse a Documentação com o endpoint": "https://<the_path>.deta.dev/docs",
-                "Outrem...": "https://<the_path>.deta.dev/redoc"
-            },
-            "Aplicação simples desenvolvida em Python " +
-            "utilizando o modulo FastApi para fins de teste e aprendizado!",
-        ],
-        "Para mais informações": "https://docs.deta.sh"
-    }
     return templates.TemplateResponse("index.html", {"request": request})
 

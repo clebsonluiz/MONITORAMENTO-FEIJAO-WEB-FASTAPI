@@ -1,6 +1,6 @@
-# FASTApi with Deta Base connection
+# Pagina web Monitoramento simples com FASTApi e Deta Base
 
-Projeto com intuito de aprendizado a respeito de de utilização de bases non-sql, utilizando neste projeto os serviços do Deta como [Deta Base](https://docs.deta.sh/docs/base/about), e possivelmente fazendo deploy com [Deta Micro](https://docs.deta.sh/docs/micros/about). Para mais informações consulte a documentação oficial [Deta Docs](https://docs.deta.sh/docs/home)
+Projeto com intuito de servir como uma pagina web simples para testar o acompanhamento do monitoramento de alguns sensores arduino, servindo como uma parte web server e complemento de outro repositorio, o [MONITORAMENTO-FEIJAO-ESP8266-ARDUINO](https://github.com/clebsonluiz/MONITORAMENTO-FEIJAO-ESP8266-ARDUINO), além de aprendizado a respeito de utilização de bases non-sql, utilizando neste projeto os serviços do Deta como [Deta Base](https://docs.deta.sh/docs/base/about), e possivelmente fazendo deploy com [Deta Micro](https://docs.deta.sh/docs/micros/about). Para mais informações consulte a documentação oficial [Deta Docs](https://docs.deta.sh/docs/home)
 
 ## Configuração e Utilização
 
